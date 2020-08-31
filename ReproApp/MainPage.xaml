@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:reproApp="clr-namespace:ReproApp;assembly=ReproApp"
+             x:DataType="reproApp:MainPageViewModel"
+             x:Class="ReproApp.MainPage">
+
+    <Grid RowDefinitions="Auto,320,*">
+        <StackLayout BackgroundColor="LightGoldenrodYellow">
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <StackLayout>
+                    <Label Text="Repro CollectionView crash on iOS" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                </StackLayout>
+            </Frame>
+            <Button Text="Press me to trigger the crash" HorizontalOptions="Start" Command="{Binding TestCommand}" />
+        </StackLayout>
+
+        <ScrollView Grid.Row="1">
+            <CollectionView 
+                HeightRequest="50" IsVisible="{Binding IsListVisible}"
+                ItemsSource="{Binding Items}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="reproApp:ItemViewModel">
+                        <StackLayout Padding="20,30,20,0">
+                            <Label Text="{Binding Text}" TextColor="DeepPink" FontSize="Body"/>
+                            <BoxView HeightRequest="1" BackgroundColor="LightPink" Margin="0,30,0,0" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>
